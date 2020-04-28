@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter"
+import routes from "./routes";
 const app = express();
 
 //middleware
@@ -17,8 +18,12 @@ app.use(morgan("dev")); //logging 기능
 
 
 
-app.use("/",globalRouter);
-app.use("/user",userRouter); //use뜻 누군가 정해진 Path로 이동했을때 Router전체를 사용하겠다는 의미
-app.use("/video",videoRouter);
+app.use(routes.home,globalRouter);
+app.use(routes.users,userRouter); //use뜻 누군가 정해진 Path로 이동했을때 Router전체를 사용하겠다는 의미
+app.use(routes.videos,videoRouter);
 
 export default app; //app.js 수출
+
+// M : Model = 데이터
+// V : View = 데이터가 어떻게 생겼는지
+// C : Control = 데이터를 찾는 함수
