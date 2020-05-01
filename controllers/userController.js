@@ -6,15 +6,15 @@ export const getJoin = (req, res) => {
 
 export const postJoin = (req, res) => {
   const {
-    body : {name, email, password, password2 }
+    body: { name, email, password, password2 },
   } = req;
-  if(password !== password2) {
+  if (password !== password2) {
     res.status(400);
     res.render("join", { pageTitle: "Join" });
   } else {
     //TO Do : Register User
     //To Do : Log User in
-    res.redirect(routes.home)
+    res.redirect(routes.home);
   }
 };
 
@@ -23,7 +23,7 @@ export const getLogin = (req, res) => {
 };
 
 export const postLogin = (req, res) => {
-  res.redirect(routes.home)
+  res.redirect(routes.home);
 };
 
 export const logout = (req, res) => {
