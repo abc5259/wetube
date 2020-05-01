@@ -1,54 +1,22 @@
-export const videos = [
-    {
-      id: 324393,
-      title: "Video awesome",
-      description: "This is something I love",
-      views: 24,
-      videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-      creator: {
-        id: 121212,
-        name: "Nicolas",
-        email: "nico@las.com"
-      }
-    },
-    {
-      id: 1212121,
-      title: "Video super",
-      description: "This is something I love",
-      views: 24,
-      videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-      creator: {
-        id: 121212,
-        name: "Nicolas",
-        email: "nico@las.com"
-      }
-    },
-    {
-      id: 55555,
-      title: "Video nice",
-      description: "This is something I love",
-      views: 24,
-      videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-      creator: {
-        id: 121212,
-        name: "Nicolas",
-        email: "nico@las.com"
-      }
-    },
-    {
-      id: 11111,
-      title: "Video perfect",
-      description: "This is something I love",
-      views: 24,
-      videoFile:
-      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-      creator: {
-        id: 121212,
-        name: "Nicolas",
-        email: "nico@las.com"
-      }
-    }
-  ];
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+// 찾은 모든 변수들을 process.env.key에 저장된다.
+dotenv.config(); //.env 파일 안에 있는 정보를 불러올 수 있다.
+
+
+mongoose.connect(
+  process.env.MONGO_URL,
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true //내가 추가한것
+  }
+);
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("✅  Connected to DB");
+const handleError = error => console.log(`❌ Error on DB Connection:${error}`);
+
+db.once("open", handleOpen);
+db.on("error", handleError);

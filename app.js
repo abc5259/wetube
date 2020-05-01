@@ -13,6 +13,7 @@ const app = express();
 //middleware
 app.use(helmet()); //보안
 app.set('view engine', 'pug');
+app.use("/uploads", express.static("uploads")); //directory에서 file을 전달하는 middleware
 app.use(cookieParser()); //cookie에 유저정보를 저장
 app.use(bodyParser.json()); //서버가 json을 이해하기위해
 app.use(bodyParser.urlencoded({ extended: true})); //서버가 form을 이해하기위해
