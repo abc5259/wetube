@@ -3,11 +3,15 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import passport from "passport";
+import session from "express-session";
 import { localsMiddleware } from "./localsMiddleware";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
+
+import "./passport";
 
 const app = express();
 
@@ -20,6 +24,16 @@ app.use(cookieParser()); //cookie에 유저정보를 저장
 app.use(bodyParser.json()); //서버가 json을 이해하기위해
 app.use(bodyParser.urlencoded({ extended: true })); //서버가 form을 이해하기위해
 app.use(morgan("dev")); //logging 기능
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(localsMiddleware); //지역변수를 전역변수로 바꿔주는 middleware
 
 //router
