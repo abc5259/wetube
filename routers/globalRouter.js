@@ -12,7 +12,6 @@ import {
   postGithubLogIn,
   getMe,
   facebookLogin,
-  facebookLoginCallback,
   postFacebookLogin,
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../localsMiddleware";

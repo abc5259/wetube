@@ -2,6 +2,7 @@ import multer from "multer";
 import routes from "./routes";
 
 const multerVideo = multer({ dest: "uploads/videos/" });
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "Wetube"; //res.locals.변수이름 = 변수값
@@ -27,4 +28,5 @@ export const onlyPrivate = (req, res, next) => {
   }
 };
 
-export const uploadVideo = multerVideo.single("videoFile"); //videoFile은 input ㅅㅁㅎdml ㅜ믇
+export const uploadVideo = multerVideo.single("videoFile"); //videoFile은 input tag의 name
+export const uploadAvatar = multerAvatar.single("avatar");
