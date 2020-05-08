@@ -12,7 +12,7 @@ import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-
+import apiRouter from "./routers/apiRouter";
 import "./passport";
 
 const app = express();
@@ -45,6 +45,7 @@ app.use(localsMiddleware); //지역변수를 전역변수로 바꿔주는 middle
 app.use(routes.home, globalRouter); // "/"
 app.use(routes.users, userRouter); //use뜻 누군가 정해진 Path로 이동했을때 Router전체를 사용하겠다는 의미 "/users/"
 app.use(routes.videos, videoRouter); // "/videos/"
+app.use(routes.api, apiRouter);
 
 export default app; //app.js 수출
 
