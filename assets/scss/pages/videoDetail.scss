@@ -45,5 +45,27 @@
         width: 100%;
       }
     }
+    .video__comments-list {
+      margin-top: 50px;
+      li {
+        position: relative;
+        background-color: #3498db;
+        color: white;
+        padding: 15px;
+        border-radius: 20px;
+        border-bottom-left-radius: 0px;
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+        button {
+          display: inline-block;
+          position: absolute;
+          width: 30px;
+          top: 0;
+          right: 0;
+          background-color: red;
+        }
+      }
+    }
   }
 }
