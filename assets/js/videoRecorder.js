@@ -1,4 +1,4 @@
-const recorderContainer = document.getElementById("jsRecorderContainer");
+const recorderCotainer = document.getElementById("jsRecorderContainer");
 const recordBtn = document.getElementById("jsRecordBtn");
 const videoPreview = document.getElementById("jsVideoPreview");
 
@@ -14,14 +14,6 @@ const handleVideoData = (event) => {
   link.click();
 };
 
-const stopRecording = () => {
-  videoRecorder.stop();
-  recordBtn.removeEventListener("click", stopRecording);
-  streamObject.getVideoTracks()[0].stop(); //비디오 녹화 종료후 카메라 끄기
-  recordBtn.addEventListener("click", getVideo);
-  recordBtn.innerHTML = "Start Recording";
-};
-
 const startRecording = () => {
   videoRecorder = new MediaRecorder(streamObject);
   videoRecorder.start();
@@ -29,11 +21,18 @@ const startRecording = () => {
   recordBtn.addEventListener("click", stopRecording);
 };
 
+const stopRecording = () => {
+  videoRecorder.stop();
+  recordBtn.removeEventListener("click", stopRecording);
+  recordBtn.addEventListener("click", getVideo);
+  recordBtn.innerHTML = "Start Recording";
+};
+
 const getVideo = async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: true,
-      video: { width: 1280, height: 720 },
+      video: { width: 1200, height: 720 },
     });
     videoPreview.srcObject = stream;
     videoPreview.muted = true;
@@ -42,7 +41,7 @@ const getVideo = async () => {
     streamObject = stream;
     startRecording();
   } catch (error) {
-    recordBtn.innerHTML = "☹️ Cant Record";
+    recordBtn.innerHTML = "☹️ Cant record";
   } finally {
     recordBtn.removeEventListener("click", getVideo);
   }
@@ -52,6 +51,6 @@ function init() {
   recordBtn.addEventListener("click", getVideo);
 }
 
-if (recorderContainer) {
+if (recorderCotainer) {
   init();
 }

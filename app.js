@@ -9,10 +9,10 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./localsMiddleware";
 import routes from "./routes";
+import apiRouter from "./routers/apiRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-import apiRouter from "./routers/apiRouter";
 import "./passport";
 
 const app = express();
